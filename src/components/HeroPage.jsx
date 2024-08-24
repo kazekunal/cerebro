@@ -1,8 +1,7 @@
 'use client'
 import Image from 'next/image';
 import { Dancing_Script } from '@next/font/google';
-import { useState } from 'react';
-import Dashboard from '@/app';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const dancingScript = Dancing_Script({
@@ -13,20 +12,23 @@ const dancingScript = Dancing_Script({
 export default function HeroPage() {
   const [textAreaValue, setTextAreaValue] = useState('');
   const [error, setError] = useState(null);
-  const [nolink, SetNoLink] = useState(true);
+  const [isValidLink, setIsValidLink] = useState(false);
 
-  const handleButtonClick = () => {
-    const link = textAreaValue.trim();
-    if (!link) {
+  useEffect(() => {
+    validateLink(textAreaValue);
+  }, [textAreaValue]);
+
+  const validateLink = (link) => {
+    const trimmedLink = link.trim();
+    if (!trimmedLink) {
       setError('Nothing to see here, please enter a link');
-      SetNoLink(false);
-    } else if (!isValidYouTubeLink(link)) {
+      setIsValidLink(false);
+    } else if (!isValidYouTubeLink(trimmedLink)) {
       setError('Invalid YouTube link, please enter a valid link');
-      SetNoLink(false);
+      setIsValidLink(false);
     } else {
-      // const videoId = link.split('v=')[1];
-      // const embedLink = `https://www.youtube.com/embed/${videoId}`;
       setError(null);
+      setIsValidLink(true);
     }
   };
 
@@ -34,6 +36,12 @@ export default function HeroPage() {
     const youtubeRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=)?([a-zA-Z0-9_-]{11})/;
     return youtubeRegex.test(link);
+  };
+
+  const handleButtonClick = (e) => {
+    if (!isValidLink) {
+      e.preventDefault(); // Prevent navigation only if the link is not valid
+    }
   };
 
   return (
@@ -59,13 +67,18 @@ export default function HeroPage() {
           onChange={(e) => setTextAreaValue(e.target.value)}
         ></textarea>
         {error && <div className="text-[#ef4444] mb-2">{error}</div>}
-        <Link href="/Dashboard">
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
-          onClick={handleButtonClick}
-        >
-          Explore
-        </button>
+        <Link href={isValidLink ? `/Dashboard?link=${encodeURIComponent(textAreaValue)}` : '#'}>
+          <button
+            className={`font-bold py-2 px-4 rounded ${
+              isValidLink
+                ? 'bg-blue-500 hover:bg-blue-600 text-white'
+                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+            }`}
+            onClick={handleButtonClick}
+            disabled={!isValidLink}
+          >
+            Explore
+          </button>
         </Link>
       </div>
 
