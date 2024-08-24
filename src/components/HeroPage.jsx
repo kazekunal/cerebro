@@ -1,7 +1,9 @@
+'use client'
 import Image from 'next/image';
-// import hero_img from '../../public/hero_img.jpg'
 import { Dancing_Script } from '@next/font/google';
-
+import { useState } from 'react';
+import Dashboard from '@/app';
+import Link from 'next/link';
 
 const dancingScript = Dancing_Script({
   subsets: ['latin'],
@@ -9,6 +11,30 @@ const dancingScript = Dancing_Script({
 });
 
 export default function HeroPage() {
+  const [textAreaValue, setTextAreaValue] = useState('');
+  const [error, setError] = useState(null);
+  const [nolink, SetNoLink] = useState(true);
+
+  const handleButtonClick = () => {
+    const link = textAreaValue.trim();
+    if (!link) {
+      setError('Nothing to see here, please enter a link');
+      SetNoLink(false);
+    } else if (!isValidYouTubeLink(link)) {
+      setError('Invalid YouTube link, please enter a valid link');
+      SetNoLink(false);
+    } else {
+      // const videoId = link.split('v=')[1];
+      // const embedLink = `https://www.youtube.com/embed/${videoId}`;
+      setError(null);
+    }
+  };
+
+  const isValidYouTubeLink = (link) => {
+    const youtubeRegex =
+      /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=)?([a-zA-Z0-9_-]{11})/;
+    return youtubeRegex.test(link);
+  };
 
   return (
     <div className="container mx-auto px-4 py-12 flex flex-col lg:flex-row items-center">
@@ -29,10 +55,18 @@ export default function HeroPage() {
             paddingTop: '1.0rem',
             paddingBottom: '1.0rem'
           }}
+          value={textAreaValue}
+          onChange={(e) => setTextAreaValue(e.target.value)}
         ></textarea>
-        <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+        {error && <div className="text-[#ef4444] mb-2">{error}</div>}
+        <Link href="/Dashboard">
+        <button
+          className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+          onClick={handleButtonClick}
+        >
           Explore
         </button>
+        </Link>
       </div>
 
       {/* Right side image */}
