@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Your Website Name
+
+Brief description of your website and its purpose.
 
 ## Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+What things you need to install the software and how to install them:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- Node.js (version X.X.X or higher)
+- npm (usually comes with Node.js)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Installation
 
-## Learn More
+A step-by-step series of examples that tell you how to get a development environment running:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+    ```git clone https://github.com/yourusername/your-repo-name.git
+        cd your-repo-name```
+2. Install backend dependencies:
+    ```npm install```
+3. Install frontend dependencies:
+    ```cd frontend```
+    ```cd cerebro```
+    ```npm install```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Running the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Starting the Backend
 
-## Deploy on Vercel
+From the root directory of the project:
+    ```nodemon server.js```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Built With
+
+* [React](https://reactjs.org/) - The web framework used for the frontend
+* [Node.js](https://nodejs.org/) - The runtime for the backend
+* [Express](https://expressjs.com/) - The web application framework for the backend (if you're using Express)
+* [Other major libraries/frameworks used in your project]
+
+## Authors
+
+* **Kunal Passan* - *Initial work* - [Kazekunal](https://github.com/kazekunal)
+* **Chirayu Agrawal* - *Initial work* - [chirayuxd](https://github.com/chirayuxd)
+* **Kunal Sharan* - *Initial work* - [Kunal-sharan](https://github.com/Kunal-sharan)
+* **Sanskar Sugandhi* - *Initial work* - [SanskarGithub07](https://github.com/SanskarGithub07)
+
+## License
+
+This project is licensed under the [LICENSE NAME] License - see the [LICENSE.md](LICENSE.md) file for details

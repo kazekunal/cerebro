@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Dancing_Script } from '@next/font/google';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Input } from "@/components/ui/input"
 
 const dancingScript = Dancing_Script({
   subsets: ['latin'],
@@ -55,7 +56,7 @@ export default function HeroPage() {
           Focus, Learn<br />
           Achieve
         </h1>
-        <textarea
+        <Input
           className="w-full p-2 border border-gray-300 rounded-md mb-4 h-16 text-lg"
           rows="4"
           placeholder="Enter the link here to start learning..."
@@ -65,7 +66,7 @@ export default function HeroPage() {
           }}
           value={textAreaValue}
           onChange={(e) => setTextAreaValue(e.target.value)}
-        ></textarea>
+        />
         {error && <div className="text-[#ef4444] mb-2">{error}</div>}
         <Link href={isValidLink ? `/Dashboard?link=${encodeURIComponent(textAreaValue)}` : '#'}>
           <button

@@ -5,6 +5,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import MenuOverlay from "./MenuOverlay";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
+import Link from "next/link";
 
 const navLinks = [
   {
@@ -43,6 +44,7 @@ const Navbar = () => {
               <Bars3Icon className="h-5 w-5" />
             </button>
           ) : (
+            
             <button
               onClick={() => setNavbarOpen(false)}
               className="flex items-center px-3 py-2 border rounded border-slate-900 text-slate-900 hover:text-[#A9A9A9] hover:border-[#A9A9A9]"
@@ -53,9 +55,11 @@ const Navbar = () => {
         </div>
         <div>
           <ul>
+            <Link href="/">
             <h1 className="text-[#ebb21d] font-semibold">
               Cere<span className="font-bold">BRO</span>
             </h1>
+            </Link>
           </ul>
         </div>
         <div className="menu hidden md:block gap-4">
@@ -72,7 +76,8 @@ const Navbar = () => {
             <Button variant="outline">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
-            </svg><p className="ml-2 text-[#344054]">Calendar</p>
+            </svg>
+            <p className="ml-2 text-[#344054]">Streak</p>
             </Button>
         </div>
         <div className="flex">
